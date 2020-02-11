@@ -1,2 +1,8 @@
-<%= react_component("Hello") %>
-<%= react_component("Hello", { name: "react-rails" }) %>
+<h1 class="logo">Eventlite</h1>
+
+<%= javascript_pack_tag 'Eventlite' %>
+
+<%= content_tag :div,
+  id: "events_data",
+  data: @events.to_json do %>
+<% end %>

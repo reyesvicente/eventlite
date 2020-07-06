@@ -47,7 +47,7 @@ class Eventlite extends React.Component {
   }
 
   addNewEvent = (event) => {
-    const events = [...this.state.events].sort(function(a, b) {
+    const events = [...this.state.events, event].sort(function(a, b) {
       return new Date(a.start_datetime) - new Date(b.start_datetime);
     });
     this.setState({ events: events });

@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import EventsList from './EventList'
 import EventForm from './EventForm'
+import FormErrors from './FormErrors'
 
 class Eventlite extends React.Component {
   constructor(props) {
@@ -12,8 +13,9 @@ class Eventlite extends React.Component {
       events: this.props.events,
       title: '',
       start_datetime: '',
-      location: ''
-    };
+      location: '',
+      formErrors: {}
+    }
   }
 
   handleInput = e => {
@@ -26,19 +28,21 @@ class Eventlite extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    let newEvent = { title: this.state.title, start_datetime: this.state.start_datetime, location: this.state.location }
     axios({
       method: 'POST',
       url: '/events',
-      data: { event: this.state },
+      data: { event: newEvent },
       headers: {
         'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
       }
     })
-    .then(function (response) {
+    .then(response => {
       this.addNewEvent(response.data)
-    }.bind(this))
-    .catch(function (error) {
-      console.log(error)
+    })
+    .catch(error => {
+      console.log(error.response.data)
+      this.setState({formErrors: error.response.data})
     })
   }
 
@@ -52,14 +56,15 @@ class Eventlite extends React.Component {
   render() {
     return (
       <div>
-        <EventForm handleSubmit={this.handleSubmit}
+        <FormErrors formErrors = {this.state.formErrors} />
+        <EventForm handleSubmit = {this.handleSubmit}
           handleInput = {this.handleInput}
           title = {this.state.title}
           start_datetime = {this.state.start_datetime}
           location = {this.state.location} />
         <EventsList events={this.state.events} />
       </div>
-    );
+    )
   }
 }
 

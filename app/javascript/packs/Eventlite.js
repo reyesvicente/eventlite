@@ -7,14 +7,15 @@ import EventForm from './EventForm'
 import FormErrors from './FormErrors'
 
 class Eventlite extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, railsContext) {
+    super(props)
     this.state = {
       events: this.props.events,
       title: '',
       start_datetime: '',
       location: '',
-      formErrors: {}
+      formErrors: {},
+      formValid: false
     }
   }
 
@@ -23,7 +24,28 @@ class Eventlite extends React.Component {
     const name = e.target.name
     const newState = {}
     newState[name] = e.target.value
-    this.setState(newState)
+    this.setState(newState, this.validateForm)
+  }
+
+  validateForm() {
+    let formErrors = {}
+    let formValid = true
+    if(this.state.title.length <= 2) {
+      formErrors.title = ["is too short (minimum is 3 characters)"]
+      formValid = false
+    }
+    if(this.state.location.length === 0) {
+      formErrors.location = ["can't be blank"]
+      formValid = false
+    }
+    if(this.state.start_datetime.length === 0) {
+      formErrors.start_datetime = ["can't be blank"]
+      formValid = false
+    } else if(Date.parse(this.state.start_datetime) <= Date.now()) {
+      formErrors.start_datetime = ["can't be in the past"]
+      formValid = false
+    }
+    this.setState({formValid: formValid, formErrors: formErrors})
   }
 
   handleSubmit = e => {
@@ -64,6 +86,7 @@ class Eventlite extends React.Component {
         <FormErrors formErrors = {this.state.formErrors} />
         <EventForm handleSubmit = {this.handleSubmit}
           handleInput = {this.handleInput}
+          formValid={this.state.formValid}
           title = {this.state.title}
           start_datetime = {this.state.start_datetime}
           location = {this.state.location} />

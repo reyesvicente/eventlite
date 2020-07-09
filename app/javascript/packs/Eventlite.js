@@ -16,7 +16,7 @@ class Eventlite extends React.Component {
       title: {value: '', valid: false},
       start_datetime: {value: '', valid: false},
       location: {value: '', valid: false},
-      formErrors: '',
+      formErrors: {},
       formValid: false
     }
   }

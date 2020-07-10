@@ -2,5 +2,24 @@
   "editor.fontSize": 20,
   "cSpell.words": [
     "eventlite"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#282C34",
+    "activityBar.activeBorder": "#074359",
+    "activityBar.background": "#282C34",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#4D78CC",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "statusBar.background": "#282C34",
+    "statusBar.border": "#282C34",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#282C34",
+    "titleBar.activeBackground": "#282C34",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.border": "#282C34",
+    "titleBar.inactiveBackground": "#282C34",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#e0115f"
 }

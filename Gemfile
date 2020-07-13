@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 # Use 'react_on_rails'
 gem 'react_on_rails', '11.1.4'
 gem 'rack-cors'
+gem 'devise'
+gem 'devise_token_auth'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -1,6 +1,10 @@
 {
-  "editor.fontSize": 20,
+  "editor.fontSize": 18,
   "cSpell.words": [
     "eventlite"
-  ]
+],
+"editor.tabSize": 2,
+"editor.fontFamily": "Fira Code",
+"workbench.iconTheme": "material-icon-theme",
+"window.zoomLevel": 1
 }
